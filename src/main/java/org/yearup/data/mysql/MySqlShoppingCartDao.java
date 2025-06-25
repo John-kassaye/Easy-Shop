@@ -65,7 +65,7 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
     }
 
     @Override
-    public void addOrIncrease(int userId, int productId, int quantity) {
+    public void add(int userId, int productId, int quantity) {
 
         String query = """
                 INSERT INTO shopping_cart (user_id, product_id, quantity)
