@@ -44,6 +44,9 @@ public class ShoppingCartController
         }
         catch(Exception e)
         {
+            if (principal == null){
+                throw new ResponseStatusException(HttpStatus.UNAUTHORIZED);
+            }
             throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Oops... our bad.");
         }
     }

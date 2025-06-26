@@ -43,8 +43,7 @@ public class MySqlCategoryDao extends MySqlDaoBase implements CategoryDao
     {
         // get category by id
         Category category = null;
-        String query = "SELECT * FROM categories \n" +
-                "WHERE category_id = ?;";
+        String query = "SELECT * FROM categories WHERE category_id = ?;";
         try (
                 Connection connection = getConnection();
                 PreparedStatement ps = connection.prepareStatement(query);
