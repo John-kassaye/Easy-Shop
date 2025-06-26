@@ -12,7 +12,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import static org.yearup.data.mysql.MySqlProductDao.mapRow;
 
 @Component
 public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDao {
@@ -24,9 +23,7 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
     public ShoppingCart getByUserId(int userId) {
 
         ShoppingCart shoppingCart = new ShoppingCart();
-        String query = "SELECT * FROM shopping_cart AS sc \n" +
-                "JOIN products AS p ON p.product_id = sc.product_id \n" +
-                "WHERE user_id = ?;";
+        String query = "SELECT * FROM shopping_cart AS sc JOIN products AS p ON p.product_id = sc.product_id WHERE user_id = ?;";
         try(
                 Connection connection = getConnection();
                 PreparedStatement ps = connection.prepareStatement(query);
@@ -56,7 +53,7 @@ public class MySqlShoppingCartDao extends MySqlDaoBase implements ShoppingCartDa
         ){
             ps.setInt(1,item.getQuantity());
             ps.setInt(2,userId);
-            ps.setInt(1,productId);
+            ps.setInt(3,productId);
             ps.executeUpdate();
 
         }catch (SQLException e){
